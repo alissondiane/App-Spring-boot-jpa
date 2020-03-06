@@ -1,10 +1,10 @@
-package com.alisson.springboot.datajpa.app.models.dao;
+package com.alisson.springboot.datajpa.app.model.service;
 
 import java.util.List;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
 
-public interface IClienteDao {
+public interface IClienteService {
 	public List<Cliente> findAll();
 	
 	public void save(Cliente cliente);
