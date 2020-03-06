@@ -11,24 +11,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
 
+//Whitout CrudRepository
 @Repository
-public class ClienteDaoImpl implements IClienteDao {
+public class ClienteDaoImpl /*implements IClienteDao*/ {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Cliente> findAll() {
 		return em.createQuery("from Cliente").getResultList();
 	}
 	
-	@Override
+	
 	public Cliente findOne(Long id) {
 		return em.find(Cliente.class, id);
 	}
 
-	@Override
+	
 	public void save(Cliente cliente) {
 		if(cliente.getId() != null && cliente.getId()>0) {
 			em.merge(cliente);
@@ -36,8 +36,6 @@ public class ClienteDaoImpl implements IClienteDao {
 			em.persist(cliente);
 		}
 	}
-
-	@Override
 	public void delete(Long id) {
 		em.remove(findOne(id));	
 	}

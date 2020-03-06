@@ -10,7 +10,7 @@ import com.alisson.springboot.datajpa.app.model.entity.Cliente;
 import com.alisson.springboot.datajpa.app.models.dao.IClienteDao;
 //Permite invocar varios dao en una sola transaccion metodo
 @Service
-public class ClinteServiceImpl implements IClienteService{
+public class ClienteServiceImpl implements IClienteService{
 	
 	@Autowired
 	private IClienteDao clienteDao;
@@ -18,7 +18,7 @@ public class ClinteServiceImpl implements IClienteService{
 	@Override
 	@Transactional(readOnly = true)
 	public List<Cliente> findAll() {
-		return clienteDao.findAll();
+		return (List<Cliente>) clienteDao.findAll();
 	}
 
 	@Override
@@ -30,13 +30,13 @@ public class ClinteServiceImpl implements IClienteService{
 	@Override
 	@Transactional(readOnly=true)
 	public Cliente findOne(Long id) {
-		return clienteDao.findOne(id);
+		return clienteDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		clienteDao.delete(id);
+		clienteDao.deleteById(id);
 	}
 	
 
