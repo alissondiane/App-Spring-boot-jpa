@@ -7,8 +7,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
 
 //Whitout CrudRepository
