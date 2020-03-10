@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
+import com.alisson.springboot.datajpa.app.model.entity.Producto;
 
 public interface IClienteService {
 	public List<Cliente> findAll();
@@ -17,4 +18,7 @@ public interface IClienteService {
 	public Cliente findOne(Long id);
 	
 	public void delete(Long id);
+	
+	public List<Producto> finByNombre(String term);
+
 }
