@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
+import com.alisson.springboot.datajpa.app.model.entity.Factura;
 import com.alisson.springboot.datajpa.app.model.entity.Producto;
 
 public interface IClienteService {
@@ -20,5 +21,8 @@ public interface IClienteService {
 	public void delete(Long id);
 	
 	public List<Producto> finByNombre(String term);
-
+	
+	public void saveFactura(Factura factura);
+	
+	public Producto findProductoById(Long id);
 }

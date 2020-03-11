@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
+import com.alisson.springboot.datajpa.app.model.entity.Factura;
 import com.alisson.springboot.datajpa.app.model.entity.Producto;
 import com.alisson.springboot.datajpa.app.models.dao.IClienteDao;
+import com.alisson.springboot.datajpa.app.models.dao.IFacturaDao;
 import com.alisson.springboot.datajpa.app.models.dao.IProductoDao;
 //Permite invocar varios dao en una sola transaccion metodo
 @Service
@@ -19,8 +21,12 @@ public class ClienteServiceImpl implements IClienteService{
 	
 	@Autowired
 	private IProductoDao productoDao;
+	
 	@Autowired
 	private IClienteDao clienteDao;
+	
+	@Autowired
+	private IFacturaDao facturaDao;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -55,9 +61,22 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Producto> finByNombre(String term) {
 		
 		return productoDao.findByNombreLikeIgnoreCase("%"+term+"%");
+	}
+
+	@Override
+	@Transactional
+	public void saveFactura(Factura factura) {
+		facturaDao.save(factura);	
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Producto findProductoById(Long id) {
+		return productoDao.findById(id).orElse(null);
 	}
 	
 }
