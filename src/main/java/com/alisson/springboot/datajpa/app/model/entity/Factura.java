@@ -41,6 +41,8 @@ public class Factura implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cliente cliente;
 	
+	//por la relacion y la opcion cascade al insertar una factura asi mismo se guarda sus
+	//lineas de la factura
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="factura_id")
 	private List<ItemFactura> items;
