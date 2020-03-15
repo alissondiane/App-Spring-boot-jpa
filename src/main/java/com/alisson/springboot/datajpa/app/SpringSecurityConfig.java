@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.alisson.springboot.datajpa.app.auth.handler.LoginSuccessHandler;
+import com.alisson.springboot.datajpa.app.model.service.JpaUserDetailService;
 //adaptador donde se guardan los usuarios
 
 //Habilitamos seguridad por anotaciones
@@ -31,12 +32,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired 
 	private DataSource dataSource;
 	
+	@Autowired 
+	private JpaUserDetailService userDetailService;
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","/css/**","/js/**","/images/**","/listar").permitAll()
+		http.authorizeRequests().antMatchers("/","/css/**","/js/**","/images/**","/listar","/locale").permitAll()
 		/*.antMatchers("/ver/**").hasAnyRole("USER")
 		.antMatchers("/uploads/**").hasAnyRole("USER")
 		.antMatchers("/form/**").hasAnyRole("ADMIN")
@@ -59,12 +63,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		
-		//Mediante conexion a la base de datos
+		
+		builder.userDetailsService(userDetailService)
+		.passwordEncoder(passwordEncoder);
+		//Mediante conexion a la base de datos con jdbc
+		/*
 		builder.jdbcAuthentication()
 		.dataSource(dataSource)
 		.passwordEncoder(passwordEncoder)
 		.usersByUsernameQuery("select username,password, enabled from users where username=?")
 		.authoritiesByUsernameQuery("select u.username, a.authority from authorities a inner join users u on (a.user_id=u.id) where u.username=?");
+		*/
 		//Creaacion de usuarios y roles 1era forma
 		//forma de encriptacion de contraseña
 		/*
