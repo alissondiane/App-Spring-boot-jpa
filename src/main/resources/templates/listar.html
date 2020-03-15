@@ -12,9 +12,12 @@
 				<h4 class="card-title">
 					<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary btn-xs" th:href="@{/form/}">Crear
 						Cliente</a>
+							<a class="btn btn-success btn-xs float-right" th:href="@{'/listar'(format=csv)}">CSV</a>
+
 				</h4>
-				<table class="table table-striped">
-					<thead class="thead-inverse">
+				<div class="table-responsive">
+				<table class="table table-light table-striped table-bordered">
+					<thead class="thead-dark">
 						<tr>
 							<th sec:authorize="hasRole('ROLE_USER')" >id</th>
 							<th th:text="#{text.cliente.nombre}" >nombre</th>
@@ -38,12 +41,13 @@
 							<td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-primary btn-xs"
 								th:href="@{/form/}+ ${cliente.id}" th:text="'Editar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-danger btn-xs"
-								th:href="@{/eliminar/}+ ${cliente.id}" th:text="'Eliminar'"
-								onclick="return confirm('Estas seguro que quieres eliminar')"></a></td>
+								th:href="@{/eliminar/}+ ${cliente.id}"
+								onclick="return confirm('Estas seguro que quieres eliminar')">X</a></td>
 
 						</tr>
 					</tbody>
 				</table>
+				</div>
 				<nav th:replace="paginator-nav :: paginator "></nav>
 			</div>
 		</div>
