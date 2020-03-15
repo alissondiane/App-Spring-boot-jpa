@@ -1,6 +1,7 @@
 package com.alisson.springboot.datajpa.app.controllers;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,12 +39,16 @@ public class FacturaController {
 	@Autowired
 	private IClienteService clienteService;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@GetMapping("/ver/{id}")
 	public String ver(@PathVariable(value="id") Long id,
 			Model model,
-			RedirectAttributes flash) {
+			RedirectAttributes flash,
+			Locale locale) {
 		//Factura factura = clienteService.findFacturaById(id);
 		Factura factura = clienteService.fetchByIdWithClienteWithItemFacturaWithProcucto(id);
 		
@@ -51,13 +57,13 @@ public class FacturaController {
 			return "redirect:/listar";
 		}
 		model.addAttribute("factura", factura);
-		model.addAttribute("titulo", "Factura: ".concat(factura.getDescripcion()));
-		
+		model.addAttribute("titulo", String.format(messageSource.getMessage("text.factura.ver.titulo", null, locale), factura.getDescripcion()));		
 		return "factura/ver";
 		
 	}
 	@GetMapping("/form/{clienteId}")
-	public String crear(@PathVariable(value="clienteId") Long clienteId, Map<String,Object> model, RedirectAttributes flash) {
+	public String crear(@PathVariable(value="clienteId") Long clienteId, Map<String,Object> model, 
+			RedirectAttributes flash) {
 		Cliente cliente = clienteService.findOne(clienteId);
 		if(cliente == null) {
 			flash.addFlashAttribute("error", "El cliente no existe en la base de datos");
