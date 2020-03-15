@@ -136,7 +136,7 @@ public class FacturaPdfView extends AbstractPdfView {
 			
 		}
 		
-		cell= new PdfPCell(new Phrase(mensaje.getMessage("text.factura.form.total")));
+		cell= new PdfPCell(new Phrase(mensaje.getMessage("text.factura.form.total")+": "));
 		cell.setColspan(3);
 		cell.setBackgroundColor(new Color(214, 214, 214));
 		cell.setBorderColor(new Color(214, 214, 214));
