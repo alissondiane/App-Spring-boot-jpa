@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.alisson.springboot.datajpa.app.model.entity.Cliente;
-import com.alisson.springboot.datajpa.app.view.xml.ClienteList;
 
 @Component("listar.json")
 public class ClienteListJsonView extends MappingJackson2JsonView{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected Object filterModel(Map<String, Object> model) {
 		model.remove("titulo");

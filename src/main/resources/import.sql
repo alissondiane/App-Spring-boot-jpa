@@ -4,11 +4,6 @@ INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(3,'John','D
 INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(4,'John','Doe','john@bolsaideas.com','2017-08-28','');
 INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(5,'John','Doe','john@bolsaideas.com','2017-08-28','');
 INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(6,'John','Doe','john@bolsaideas.com','2017-08-28','');
-INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(7,'John','Doe','john@bolsaideas.com','2017-08-28','');
-INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(8,'Andres','Guzman','profesor@bolsaideas.com','2017-08-24','');
-INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(9,'John','Doe','john@bolsaideas.com','2017-08-28','');
-INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(10,'John','Doe','john@bolsaideas.com','2017-08-28','');
-INSERT INTO clientes(id,nombre,apellido,email,create_at,foto) VALUES(11,'John','Doe','john@bolsaideas.com','2017-08-28','');
 
 
 /*POPULATE TABLE PRODUCTS*/
